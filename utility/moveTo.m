@@ -1,7 +1,10 @@
-function [done,eePosition,eeQuaternion] = moveTo(position)
+function [done,eePosition,eeQuaternion] = moveTo(position,min_delay)
 %MOVETO Summary of this function goes here
 %   Detailed explanation goes here
-    maxTime = 15;
+    arguments
+        position = [0.4,0,0.4,-pi,0,0];
+        min_delay= 10;
+    end
     jointMess = rosmessage("geometry_msgs/PoseStamped");
     jointPub = rospublisher("/cartesian_impedance_example_controller/equilibrium_pose");
     pause(1);
@@ -48,7 +51,7 @@ function [done,eePosition,eeQuaternion] = moveTo(position)
         eePosition = [transl.X,transl.Y,transl.Z];
         eeQuaternion = [rotation.W, rotation.X,rotation.Y,rotation.Z];
         elapsedTime = toc(startTime);
-        if norm(eePositionPrevious-eePosition)<0.01 && norm(eeQuaternionPrevious-eeQuaternion)<0.01 && elapsedTime>maxTime
+        if norm(eePositionPrevious-eePosition)<0.01 && norm(eeQuaternionPrevious-eeQuaternion)<0.01 && elapsedTime>min_delay
             done = 0;
             break;
         end
