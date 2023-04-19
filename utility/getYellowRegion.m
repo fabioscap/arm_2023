@@ -38,25 +38,53 @@ if ~exist("pcYellow", "var")
 else
     disp("skipping photos")
 end
-% the bounds of the yellow region (world frame)
-% TODO maybe move this in link0 frame?
-mn = [0,-0.3,0.52];
-mx = [0.35,0.27,10];
+% the bounds of the yellow region
+mn = [0+0.1,-0.3,0.52-0.615];
+mx = [0.35+0.1,0.27,10-0.615];
 
 pcYellow = pcrestrict(pcMerged.Location, mn, mx);
 % TODO maybe downsample the point clouds? we have 60k points
-
-labels = kmeans(pcYellow, num_objects);
-
+pcshow(pcYellow);
+[labels, ctrs] = kmeans(pcYellow, num_objects);
+z_offset = [0,0,0.1,-pi,0,0];
 for i=1:num_objects
     obj = pcYellow(labels==i,:);
     
+    % put all this in a function?
     class = classifyDepth(obj);
+    obj_center = ctrs(i,:);
+    obj_cov    = cov(obj);
+    [e_vects, e_vals] = eig(obj_cov);
+    % grab the biggest direction
+    % it becomes the y-axis
+    z = e_vects(:,3);
+    if z(3) < 0 
+        z=-z; 
+    end
+    % grab one of the other two
+    x = e_vects(:,1);
+    % get y by doing cross product so you
+    % always get a right handed frame
+    y = cross(x,-z);
+    R = [x  y  z];
+    eul = rotm2eul(R);
     
-    hold on
-    if (class == 0)
-        pcshow(obj,"r");
+
+    % TODO still some numerical errors
+    % possibly due to partial point clouds
+    % maybe exploit simmetry of can and bottles around z-axis to complete
+    % the point cloud
+    if abs(dot(z,[0;0;1])) > 0.95
+        % object is upright
+        moveTo([obj_center, 0,0,0] + z_offset)
+        pause()
     else
-        pcshow(obj,"b");
+        % object is falling down
+        yaw = acos(z(1));
+        if yaw < 0
+            yaw = yaw + pi;
+        end
+        yaw
+        moveTo([obj_center, 0,0,yaw] + z_offset)
     end
 end
