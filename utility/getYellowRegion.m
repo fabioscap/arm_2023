@@ -1,5 +1,4 @@
 % TODO find better positions
-
 position1 = [0.4,0,0.4,-pi,0,0];
 position2 = [0.2,0,0.4,-pi,0,0];
 position3 = [0.31,-0.31,0.24,-2.5,-0.34,0.6];
@@ -35,56 +34,44 @@ if ~exist("pcYellow", "var")
     pcshow(pcMerged);
     % save the full point_cloud just in case
     save("ptClouds.mat","ptClouds");
+    % the bounds of the yellow region link0 frame
+    mn = [0+0.1,-0.3,0.52-0.615];
+    mx = [0.35+0.1,0.27,10-0.615];
+    pcYellow = pcrestrict(pcMerged.Location, mn, mx);
 else
     disp("skipping photos")
 end
-% the bounds of the yellow region
-mn = [0+0.1,-0.3,0.52-0.615];
-mx = [0.35+0.1,0.27,10-0.615];
-
-pcYellow = pcrestrict(pcMerged.Location, mn, mx);
-% TODO maybe downsample the point clouds? we have 60k points
-pcshow(pcYellow);
+pcshow(pcYellow,"g"); hold on;
 [labels, ctrs] = kmeans(pcYellow, num_objects);
-z_offset = [0,0,0.1,-pi,0,0];
+z_offset = [0,0,0.1,0,0,0];
 for i=1:num_objects
-    obj = pcYellow(labels==i,:);
-    
-    % put all this in a function?
-    class = classifyDepth(obj);
-    obj_center = ctrs(i,:);
-    obj_cov    = cov(obj);
-    [e_vects, e_vals] = eig(obj_cov);
-    % grab the biggest direction
-    % it becomes the y-axis
-    z = e_vects(:,3);
-    if z(3) < 0 
-        z=-z; 
-    end
-    % grab one of the other two
-    x = e_vects(:,1);
-    % get y by doing cross product so you
-    % always get a right handed frame
-    y = cross(x,-z);
-    R = [x  y  z];
-    eul = rotm2eul(R);
-    
+    gripperAt(0.08)
 
-    % TODO still some numerical errors
-    % possibly due to partial point clouds
-    % maybe exploit simmetry of can and bottles around z-axis to complete
-    % the point cloud
-    if abs(dot(z,[0;0;1])) > 0.95
-        % object is upright
-        moveTo([obj_center, 0,0,0] + z_offset)
-        pause()
-    else
-        % object is falling down
-        yaw = acos(z(1));
-        if yaw < 0
-            yaw = yaw + pi;
-        end
-        yaw
-        moveTo([obj_center, 0,0,yaw] + z_offset)
+    pc = pcYellow(labels==i,:);
+
+    % put all this in a function?
+    [class, obj, model_tf, ctr, dir]= classifyDepth(pc);
+    pcshow(obj,"r");
+    
+    if class ~= 0 % do only bottles for now
+        
     end
+
+    % marco
+    [grasp_point, yaw, width] = getGraspPoint(class, ctr, dir);
+
+
+    % TODO turn EE before approaching
+    % then approach
+    moveTo([grasp_point, -pi,0,yaw] + z_offset)
+    pause(10)
+    moveTo([grasp_point, -pi,0,yaw])
+    
+    gripperAt(width);    
+    pause(10);
+    moveTo();
+    moveTo(bottleBin);
+    gripperAt(0.08);
+    pause(10);
+    moveTo
 end

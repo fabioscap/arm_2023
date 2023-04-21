@@ -1,10 +1,14 @@
-function gripperAt(width)
-    [gripAct,gripGoal] = rosactionclient('/franka_gripper/gripper_action');
+function gripperAt(width,effort)
+    arguments
+        width
+        effort=20
+    end
+    global gripAct gripGoal
     gripperCommand = rosmessage(gripAct);
-    gripperCommand.Command.MaxEffort = 20; %N
+    gripperCommand.Command.MaxEffort = effort; %N
     gripperCommand.Command.Position = width/2; % this action client controls distance btw finger and center
     gripGoal.Command = gripperCommand.Command;
-    waitForServer(gripAct); % Can use this function if concerned with missed
+    %waitForServer(gripAct); % Can use this function if concerned with missed
     % goals but generally it should work correctly.
     sendGoal(gripAct,gripGoal)
 end
