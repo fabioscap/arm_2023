@@ -1,0 +1,56 @@
+home = [0.4,0,0.4,-pi,0,0];
+canHeight = 3.54*0.033;
+bottleHeight = 5.8*0.034;
+bottleWidth = 2*0.034;
+robotOffset = [0.1,0,-0.615,0,0,0];
+
+can1Gazebo = [-0.082,-0.667,0.690,pi,0,0];
+can2Gazebo = [-0.081,-0.670,0.573,pi,0,0];
+can3Gazebo = [-0.107,0.377,0.66,pi,0,0];
+can4Gazebo = [0.295,0.505,0.573,pi,0,0];
+bottle1Gazebo = [-0.170,-0.465,0.613,pi,0,0];
+bottle2Gazebo = [-0.143,0.526,0.548,1.566,1.463,1.576];
+bottle3Gazebo = [0.220,0.630,0.549,1.571,-0.444,1.529];
+
+can1Centered = can1Gazebo + [[0,0,canHeight/2],0,0,0];
+can2Centered = can2Gazebo + [[0,0,canHeight/2],0,0,0];
+can3Centered = can3Gazebo + [[0,0,canHeight/2],0,0,0];
+can4Centered = can4Gazebo + [[0,0,canHeight/2],0,0,0];
+bottle1Centered = bottle1Gazebo + [[0,0,bottleHeight/2],0,0,0];
+bottle2Centered = bottle2Gazebo + [[0,0,bottleWidth/2],0,0,0];
+bottle3Centered = bottle3Gazebo + [[0,0,bottleWidth/2],0,0,0];
+can1 = can1Centered+robotOffset;
+can2 = can2Centered+robotOffset;
+can3 = can3Centered+robotOffset;
+can4 = can4Centered+robotOffset;
+bottle1 = bottle1Centered+robotOffset;
+bottle2 = bottle2Centered+robotOffset;
+bottle3 = bottle3Centered+robotOffset;
+
+clear('can*Gazebo');
+clear('bottle*Gazebo');
+clear('can*Centered');
+clear('bottle*Centered');
+
+startROS;
+pickObject('can',can1);
+throwAway('can');
+moveTo(home,0);
+pickObject('can',can2);
+throwAway('can');
+moveTo(home,0);
+pickObject('can',can3);
+throwAway('can');
+moveTo(home,0);
+pickObject('can',can4);
+throwAway('can');
+moveTo(home,0);
+pickObject('bottle',bottle1);
+throwAway('bottle');
+moveTo(home,0);
+% pickObject('bottle',bottle2);
+% throwAway('bottle');
+% moveTo(home,0);
+moveTo([0.3,0.6,0.3,-pi,0,0],0);
+pickObject('bottle',bottle3);
+throwAway('bottle');
