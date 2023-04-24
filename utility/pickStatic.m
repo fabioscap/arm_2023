@@ -4,13 +4,13 @@ bottleHeight = 5.8*0.034;
 bottleWidth = 2*0.034;
 robotOffset = [0.1,0,-0.615,0,0,0];
 
-can1Gazebo = [-0.082,-0.667,0.690,pi,0,0];
-can2Gazebo = [-0.081,-0.670,0.573,pi,0,0];
-can3Gazebo = [-0.107,0.377,0.66,pi,0,0];
-can4Gazebo = [0.295,0.505,0.573,pi,0,0];
-bottle1Gazebo = [-0.170,-0.465,0.613,pi,0,0];
-bottle2Gazebo = [-0.143,0.526,0.548,1.566,1.463,1.576];
-bottle3Gazebo = [0.220,0.630,0.549,1.571,-0.444,1.529];
+can1Gazebo = [-0.082,-0.668,0.691,0,0,1];
+can2Gazebo = [-0.081,-0.670,0.573,0,0,1];
+can3Gazebo = [-0.107,0.377,0.66,0,0,1];
+can4Gazebo = [0.295,0.505,0.573,0,0,1];
+bottle1Gazebo = [-0.170,-0.464,0.615-0.085,0,0,1];
+bottle2Gazebo = [-0.143,0.525,0.548,1,0,0];
+bottle3Gazebo = [0.220,0.634,0.526,1,0,0];
 
 can1Centered = can1Gazebo + [[0,0,canHeight/2],0,0,0];
 can2Centered = can2Gazebo + [[0,0,canHeight/2],0,0,0];
@@ -33,24 +33,28 @@ clear('can*Centered');
 clear('bottle*Centered');
 
 startROS;
-pickObject('can',can1);
-throwAway('can');
-moveTo(home,0);
-pickObject('can',can2);
-throwAway('can');
-moveTo(home,0);
-pickObject('can',can3);
-throwAway('can');
-moveTo(home,0);
-pickObject('can',can4);
-throwAway('can');
-moveTo(home,0);
+% pickObject('can',can1);
+% throwAway('can');
+% moveTo(home,0);
+% pickObject('can',can2);
+% throwAway('can');
+% moveTo(home,0);
+% pickObject('can',can3);
+% throwAway('can');
+% moveTo(home,0);
+% pickObject('can',can4);
+% throwAway('can');
+% moveTo(home,0);
 pickObject('bottle',bottle1);
 throwAway('bottle');
 moveTo(home,0);
 % pickObject('bottle',bottle2);
 % throwAway('bottle');
 % moveTo(home,0);
-moveTo([0.3,0.6,0.3,-pi,0,0],0);
-pickObject('bottle',bottle3);
-throwAway('bottle');
+
+% %This is needed to avoid one of the boxes
+% moveTo([0.3,0.6,0.3,-pi,0,0],0);
+% 
+% pickObject('bottle',bottle3);
+% throwAway('bottle');
+% moveTo(home,0);

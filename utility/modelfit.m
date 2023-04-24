@@ -9,7 +9,4 @@ function [tf, pctf, rmse] = modelfit(pc,pcmodel, scale)
                                      pcdownsample(pointCloud(pc),"gridAverage",0.001),...
                                      "Metric", "PlaneToPlane");
     pctf = pctf.Location;
-    rmse
-    pcshow(pc,"r"); hold on; pcshow(pctf,"b");
 end
-

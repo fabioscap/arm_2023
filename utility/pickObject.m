@@ -1,35 +1,40 @@
 function pickObject(type,position)
 %PICKOBJECT Summary of this function goes here
 %   Detailed explanation goes here
+[m,argm] = max(position(4:6));
 if type=="can"
-    if abs(closestAngle(position(4)))==pi/2 || abs(closestAngle(position(5)))==pi/2
+    if argm~=3
         targetWidth = 0.035;
         force = 50;
-        offset = 0.01;
+        offset = 0.01+0.09;
+        z_dir = atan2(position(5),position(4));
     else
         targetWidth = 0.035;
         force = 50;
         offset = 0.075;
+        z_dir = 0;
     end
 else
-    if abs(closestAngle(position(4)))==pi/2 || abs(closestAngle(position(5)))==pi/2
+    if argm~=3
         targetWidth = 0.035;
         force = 20;
         offset = 0.075;
+        z_dir = atan2(position(5),position(4));
     else
         targetWidth = 0.02;
         force = 20;
-        offset = 0.11;
+        offset = 0.11+0.085;
+        z_dir = 0;
     end
     
 end
 
-moveTo([position(1:3)+[0,0,offset],-pi,0,0],5);
+moveTo([position(1:3)+[0,0,offset],-pi,0,z_dir],5,false,true,5);
 moveGripper(0.04,50);
 pause(1);
-moveTo([position(1:3)+[0,0,offset-0.07],-pi,0,0],0);
-moveTo([position(1:3)+[0,0,offset-0.1],-pi,0,0],0);
-moveTo([position(1:3)+[0,0,offset-0.13],-pi,0,0],2);
+moveTo([position(1:3)+[0,0,offset-0.07],-pi,0,z_dir],0);
+moveTo([position(1:3)+[0,0,offset-0.1],-pi,0,z_dir],0);
+moveTo([position(1:3)+[0,0,offset-0.13],-pi,0,z_dir],2,false,true,5);
 moveGripper(targetWidth,force);
 pause(5);
 end

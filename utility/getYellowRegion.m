@@ -20,7 +20,7 @@ if ~exist("pcYellow", "var")
     for i=1:length(scanPositions)
         moveTo(scanPositions{i})
         pause(10);
-        ptCloud = getPointCloud2;
+        ptCloud = getPointCloud;
         ptClouds{i} = ptCloud;
         if i == 1
             pcMerged = ptCloud;
@@ -58,20 +58,21 @@ for i=1:num_objects
     end
 
     % marco
-    [grasp_point, yaw, width] = getGraspPoint(class, ctr, dir);
-
-
-    % TODO turn EE before approaching
-    % then approach
-    moveTo([grasp_point, -pi,0,yaw] + z_offset)
-    pause(10)
-    moveTo([grasp_point, -pi,0,yaw])
-    
-    gripperAt(width);    
-    pause(10);
-    moveTo();
-    moveTo(bottleBin);
-    gripperAt(0.08);
-    pause(10);
-    moveTo
+    pickObject()
+    % [grasp_point, yaw, width] = getGraspPoint(class, ctr, dir);
+    % 
+    % 
+    % % TODO turn EE before approaching
+    % % then approach
+    % moveTo([grasp_point, -pi,0,yaw] + z_offset)
+    % pause(10)
+    % moveTo([grasp_point, -pi,0,yaw])
+    % 
+    % gripperAt(width);    
+    % pause(10);
+    % moveTo();
+    % moveTo(bottleBin);
+    % gripperAt(0.08);
+    % pause(10);
+    % moveTo
 end
