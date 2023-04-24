@@ -38,6 +38,7 @@ for i=1:n_pouches
                         % we approach them with a smaller width
     pause(2);
     moveGripper(0.03, 0);
+    pause(2);
     moveTo([center, -0.075, -pi, 0, -theta] + z_approach)
     pause(10);
     moveTo([center, -0.080, -pi, 0, -theta])
@@ -60,6 +61,7 @@ for i=1:n_pouches
     moveTo
     moveTo(canBin);
     moveGripper(0.04,0);
+    pause(2)
     moveGripper(0.03,0);
     pause(2)
     % TODO try fitting a square to the point cloud

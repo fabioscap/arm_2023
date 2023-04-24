@@ -13,7 +13,9 @@ can_fit = rmmissing(pcread("../models/can.ply").Location)*scale_can;
 bottle_fit = rmmissing(pcread("../models/bottle.ply").Location)*scale_bottle;
 Rzpi = [-1 0 0; 0 -1 0; 0 0 1];
 bottle_flipped = (Rzpi*bottle_fit')';
-global gripAct gripGoal
-[gripAct,gripGoal] = rosactionclient('/franka_gripper/gripper_action');
 
 grasp_bottle_up = [0, 0.085, 0];
+
+
+scale_pos = [0.61 0.38 -0.03, -pi, 0, 0];
+
