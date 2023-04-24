@@ -16,7 +16,7 @@ hold on;
 
 [labels, ctrs] = kmeans(pcYellow, num_objects,'Start',C);
 
-for i=1:num_objects
+for i=3:num_objects
     %moveGripper(0.04,10);
     pc = pcYellow(labels==i,:);
 

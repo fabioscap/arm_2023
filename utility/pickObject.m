@@ -34,9 +34,9 @@ moveGripper(0.04,50);
 pause(1);
 moveTo([position(1:3)+[0,0,offset-0.07],-pi,0,z_dir],0);
 moveTo([position(1:3)+[0,0,offset-0.1],-pi,0,z_dir],0);
-moveTo([position(1:3)+[0,0,offset-0.13],-pi,0,z_dir],2,false,true,5);
+moveTo([position(1:3)+[0,0,offset-0.13],-pi,0,z_dir],2,false,true,2);
 moveGripper(targetWidth,force);
-pause(5);
+pause(1);
 end
 
 function closeAngle = closestAngle(angle)
