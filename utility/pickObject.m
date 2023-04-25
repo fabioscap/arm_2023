@@ -1,7 +1,7 @@
 function pickObject(type,position)
 %PICKOBJECT Summary of this function goes here
 %   Detailed explanation goes here
-[m,argm] = max(position(4:6));
+[m,argm] = max(abs(position(4:6)));
 if type=="can"
     if argm~=3
         targetWidth = 0.035;

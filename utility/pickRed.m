@@ -4,21 +4,19 @@ poses;
 num_objects = 4;
 
 % initial guess for centroids (necessary?)
-C = [0.3025    0.1378    0.6396;
-    0.2479   -0.2240    0.5707;
-    0.0857    0.2156    0.6220;
-    0.2255   -0.0305    0.5658];
-if ~exist("pcYellow", "var")
-    pcYellow = getYellowCloud(true);
+if ~exist("pcRed", "var")
+    pcRed = getRedCloud(true);
 end
-pcshow(pcYellow);
+pcshow(pcRed);
 hold on;
 
-[labels, ctrs] = kmeans(pcYellow, num_objects,'Start',C);
+labels = pcsegdist(pointCloud(pcRed),0.01);
+obj_idx = [1,2,3,6];
 
-for i=1:num_objects
+for i=2:num_objects
     %moveGripper(0.04,10);
-    pc = pcYellow(labels==i,:);
+    
+    pc = pcRed(labels==obj_idx(i),:);
 
     % put all this in a function?
     [type, obj, model_tf, ctr, dir]= classifyDepth(pc);
