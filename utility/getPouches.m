@@ -26,6 +26,8 @@ ctrs_good = [    0.6217   -0.1294   -0.0816;
 colors = ["r","g","b","magenta","cyan","yellow"];
 z_approach = [0 0 0.1 0 0 0];
 
+t_pause = 5;
+
 for i=1:n_pouches
     moveTo
     pouch_i = cloud_pouches(labels==i,1:2);
@@ -40,19 +42,19 @@ for i=1:n_pouches
     moveGripper(0.03, 0);
     pause(2);
     moveTo([center, -0.075, -pi, 0, -theta] + z_approach)
-    pause(10);
+    pause(t_pause);
     moveTo([center, -0.080, -pi, 0, -theta])
-    pause(10);
+    pause(t_pause);
     moveTo([center, -0.095, -pi, 0, -theta])
-    pause(10);
+    pause(t_pause);
 
 
     moveGripper(0.029/2,50);
-    pause(10);
+    pause(t_pause);
     moveTo([center, -0.075, -pi, 0, -theta] + z_approach)
     moveTo
     moveTo(scale_pos + z_approach);
-    pause(10)
+    pause(t_pause)
     moveTo(scale_pos);
     moveGripper(0.03, 0.0);
     moveTo(scale_pos+ [0 0 -0.01 0 0 0]);
