@@ -6,7 +6,7 @@ function [tf, pctf, rmse] = modelfit(pc,pcmodel,initGuess, scale)
         scale=1 % I already scaled
     end
     pcsc = pointCloud(scale*pcmodel);
-    if initGuess == "None"
+    if class(initGuess) == "string"
         [tf, pctf, rmse] = pcregistericp(pcsc, ...
                                          pcdownsample(pointCloud(pc),"gridAverage",0.001),...
                                          "Metric", "PlaneToPlane");
