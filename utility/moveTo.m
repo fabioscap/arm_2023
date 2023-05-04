@@ -75,7 +75,7 @@ function [done,eePosition,eeQuaternion] = moveTo(position,min_delay,noStop,fix,m
                     jointMess.Pose.Orientation.Z = quat(4)+deltaOr(4);
                     send(jointPub,jointMess);
                     nsteps = nsteps+1;
-                    pause(3)
+                    pause(1)
                 else
                     done = 0;
                     break;

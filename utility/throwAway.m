@@ -1,8 +1,8 @@
 function throwAway(target_bin)
 %THROWAWAY Summary of this function goes here
 %   Detailed explanation goes here
-bottleBin = [-0.35,-0.45,0.4,-pi,0,0];
-canBin = [-0.35,0.45,0.4,-pi,0,0];
+bottleBin = [-0.35,-0.45,0.3,-pi,0,0];
+canBin = [-0.35,0.45,0.3,-pi,0,0];
 if target_bin=="bottle"
     target = bottleBin;
     target_angle = -pi/2;
@@ -23,14 +23,10 @@ delta_theta = target_angle-theta;
 if abs(delta_theta)<pi/2
     moveTo(target);
 else
-    if target(2)<0
-        moveTo([0.4,0,0.5,-pi,0,0],2,true);
-    else
-        moveTo([0.4,0,0.5,-pi,0,0],2,true);
-    end
+    moveTo([0.4,0,0.5,-pi,0,0],1.5,true);
     moveTo(target,0);
 end
-moveGripper(0.04,10);
-pause(1);
+moveGripper(0.04,50);
+pause(2);
 end
 

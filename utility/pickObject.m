@@ -1,24 +1,29 @@
-function pickObject(type,position)
+function pickObject(type,position, approach_orientation)
 %PICKOBJECT Summary of this function goes here
 %   Detailed explanation goes here
+arguments
+        type = "bottle"
+        position = [0,0,0,1,0,0];
+        approach_orientation = [-pi,0,0];
+    end
 [m,argm] = max(abs(position(4:6)));
 if type=="can"
     if argm~=3
         targetWidth = 0.035;
-        force = 50;
-        offset = 0.01+0.09;
+        force = 20;
+        offset = 0.01+0.14;
         z_dir = atan2(position(5),position(4));
     else
         targetWidth = 0.035;
-        force = 50;
-        offset = 0.075;
+        force = 20;
+        offset = 0.1;
         z_dir = 0;
     end
 else
     if argm~=3
         targetWidth = 0.035;
         force = 20;
-        offset = 0.075;
+        offset = 0.08;
         z_dir = atan2(position(5),position(4));
     else
         targetWidth = 0.02;
@@ -29,19 +34,15 @@ else
     
 end
 
-moveTo([position(1:3)+[0,0,offset],-pi,0,z_dir],5,false,true,5);
+moveTo([position(1:3)+[0,0,offset],-pi,0,z_dir],3,false,true,2);
 moveGripper(0.04,50);
 pause(1);
-moveTo([position(1:3)+[0,0,offset-0.07],-pi,0,z_dir],0);
-moveTo([position(1:3)+[0,0,offset-0.1],-pi,0,z_dir],0);
-moveTo([position(1:3)+[0,0,offset-0.13],-pi,0,z_dir],2,false,true,2);
+if approach_orientation ~= [-pi,0,0]
+    moveTo([position(1:3)+[0,0,offset],approach_orientation+[0,0,z_dir]],2);
+end
+moveTo([position(1:3)+[0,0,offset-0.07],approach_orientation+[0,0,z_dir]],0);
+moveTo([position(1:3)+[0,0,offset-0.1],approach_orientation+[0,0,z_dir]],0);
+moveTo([position(1:3)+[0,0,offset-0.13],approach_orientation+[0,0,z_dir]],2);
 moveGripper(targetWidth,force);
 pause(1);
-end
-
-function closeAngle = closestAngle(angle)
-    angles = [0,pi,-pi,pi/2,-pi/2];
-    diff = abs(angles-angle);
-    [m,argmin] = min(diff);
-    closeAngle = angles(argmin);
 end
