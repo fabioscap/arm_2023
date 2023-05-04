@@ -11,7 +11,7 @@ if type=="can"
     if argm~=3
         targetWidth = 0.035;
         force = 20;
-        offset = 0.01+0.14;
+        offset = 0.01+0.105;
         z_dir = atan2(position(5),position(4));
     else
         targetWidth = 0.035;
@@ -23,7 +23,7 @@ else
     if argm~=3
         targetWidth = 0.035;
         force = 20;
-        offset = 0.08;
+        offset = 0.01+0.105;
         z_dir = atan2(position(5),position(4));
     else
         targetWidth = 0.02;
