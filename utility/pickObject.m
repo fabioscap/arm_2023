@@ -28,7 +28,7 @@ else
     else
         targetWidth = 0.02;
         force = 20;
-        offset = 0.11+0.085;
+        offset = 0.11+0.095;
         z_dir = 0;
     end
     

@@ -10,8 +10,6 @@ function [done,eePosition,eeQuaternion] = moveTo(position,min_delay,noStop,fix,m
     end
     jointMess = rosmessage("geometry_msgs/PoseStamped");
     global jointPub;
-    tftree = rostf;
-    pause(1);
     % start 0.35,0.0001,0.5
     gripperGoal = position(1:3);
     gripperRotationX = position(4); % radians
@@ -28,6 +26,8 @@ function [done,eePosition,eeQuaternion] = moveTo(position,min_delay,noStop,fix,m
     jointMess.Pose.Orientation.Z = quat(4);
     send(jointPub,jointMess);
 
+    tftree = rostf;
+    pause(1);
     transf = getTransform(tftree, 'panda_link0', 'panda_EE','Timeout',inf); 
     transl = transf.Transform.Translation;
     rotation = transf.Transform.Rotation;
@@ -51,6 +51,7 @@ function [done,eePosition,eeQuaternion] = moveTo(position,min_delay,noStop,fix,m
             end
             eePositionPrevious = eePosition;
             eeQuaternionPrevious = eeQuaternion;
+            pause(0.5);
             transf = getTransform(tftree, 'panda_link0', 'panda_EE','Timeout',inf); 
             transl = transf.Transform.Translation;
             rotation = transf.Transform.Rotation;
