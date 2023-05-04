@@ -20,8 +20,16 @@ gripperCommand.Command.MaxEffort = effort;
 gripGoal.Command = gripperCommand.Command;            
 %pause(1);
 % Send command
+% i = 0;
+% while i<5
+%     [result,state,status] = sendGoalAndWait(gripAct,gripGoal,5);
+%     if state == 'succeeded'
+%         break;
+%     end
+%     i = i+1;
+% end
 sendGoal(gripAct,gripGoal);
-
+pause(3);
 end
 
 function NOP(varargin)

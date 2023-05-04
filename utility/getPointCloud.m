@@ -1,10 +1,9 @@
 function ptCloudWorld = getPointCloud()
 %GETPOINTCLOUD Summary of this function goes here
 %   Detailed explanation goes here
-    tftree = rostf; %finds TransformationTree directly from ros
-    pointCloudSub = rossubscriber('/camera/depth/points');
-    pause(1);
-    camera_transf = getTransform(tftree, 'panda_link0', 'camera_depth_link');
+    global pointCloudSub;
+    tftree = rostf;
+    camera_transf = getTransform(tftree, 'panda_link0', 'camera_depth_link','Timeout',inf);
     %camera_transf = getTransform(tftree, 'camera_link', 'world');
     pointcloud = receive(pointCloudSub);
     xyz = readXYZ(pointcloud); 

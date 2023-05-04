@@ -6,7 +6,7 @@ robotOffset = [0.1,0,-0.615,0,0,0];
 
 can1Gazebo = [-0.082,-0.668,0.691,0,0,1];
 can2Gazebo = [-0.081,-0.670,0.573,0,0,1];
-can3Gazebo = [-0.107,0.368,0.67,0,0,1];
+can3Gazebo = [-0.107,0.3685,0.67,0,0,1];
 can4Gazebo = [0.30,0.5105,0.573,0,0,1];
 bottle1Gazebo = [-0.170,-0.464,0.615-0.085,0,0,1];
 bottle2Gazebo = [-0.143,0.527,0.515,1,0,0];
@@ -32,7 +32,7 @@ clear('bottle*Gazebo');
 clear('can*Centered');
 clear('bottle*Centered');
 
-startROS;
+% startROS;
 pickObject('can',can1);
 throwAway('can');
 moveTo(home,0);

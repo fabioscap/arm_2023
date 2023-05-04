@@ -1,5 +1,3 @@
-% startROS;
-poses;
 % those object in the yellow region are always 4.
 num_objects = 4;
 
@@ -42,7 +40,7 @@ for i=1:num_objects
     % marco
     pickObject(type,[ctr,dir]);
     throwAway(type);
-    moveTo(home);
+    moveTo(home,1);
 end
 
 

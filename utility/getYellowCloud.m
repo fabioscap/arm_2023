@@ -12,6 +12,7 @@ scanPositions = {position1,position2,position3,position4,position5};
 ptClouds = {};
 for i=1:length(scanPositions)
     moveTo(scanPositions{i},2);
+    
     ptCloud = getPointCloud;
     ptClouds{i} = ptCloud;
     if i == 1

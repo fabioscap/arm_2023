@@ -10,10 +10,8 @@ elseif target_bin=="can"
     target = canBin;
     target_angle = pi/2;
 end
-
-tftree = rostf; %finds TransformationTree directly from ros
-pause(1);
-camera_transf = getTransform(tftree, 'panda_link0', 'panda_EE');
+tftree = rostf;
+camera_transf = getTransform(tftree, 'panda_link0', 'panda_EE','Timeout',inf);
 camera_transl = camera_transf.Transform.Translation;
 x = camera_transl.X;
 y = camera_transl.Y;
@@ -26,7 +24,8 @@ else
     moveTo([0.4,0,0.5,-pi,0,0],1.5,true);
     moveTo(target,0);
 end
-moveGripper(0.04,50);
+
 pause(2);
+moveGripper(0.04,50);
 end
 
