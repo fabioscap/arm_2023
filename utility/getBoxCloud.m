@@ -19,7 +19,7 @@ for i=1:length(scanPositions)
 end
 % save the full point_cloud just in case
 save("ptClouds.mat","ptClouds");
-mn = [-10,-10,-0.081];
+mn = [-10,-10,-0.079];
 mx = [10,10,10-0.615];
 pcY = pcrestrict(pcMerged.Location, mn, mx);
 
