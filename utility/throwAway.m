@@ -15,7 +15,7 @@ camera_transf = getTransform(tftree, 'panda_link0', 'panda_EE','Timeout',inf);
 camera_transl = camera_transf.Transform.Translation;
 x = camera_transl.X;
 y = camera_transl.Y;
-moveTo([x,y,0.4,-pi,0,0],1,true);
+moveTo([x,y,0.25,-pi,0,0],1,true);
 theta = atan2(y,x);
 delta_theta = target_angle-theta;
 if abs(delta_theta)<pi/2

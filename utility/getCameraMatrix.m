@@ -5,7 +5,6 @@ function [K,P] = getCameraMatrix
         msg = receive(sub,10);
         K_ = reshape(msg.K,3,3);
         P_ = reshape(msg.P,3,4);
-        disp("ciao")
     end
     K=K_';
     P = P_;  
