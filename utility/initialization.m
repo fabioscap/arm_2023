@@ -24,6 +24,9 @@ Ymx = [0.35+0.1,0.27,10-0.615];
 % Red region bounds
 Rmn = [0.65,-0.21,0.52-0.615];
 Rmx = [1,0.25,10-0.615];
+% Box region bounds
+Bmn = [0.17,-0.705,0.52-0.615];
+Bmx = [0.705,-0.26,10-0.615];
 
 jointPub = rospublisher("/cartesian_impedance_example_controller/equilibrium_pose");
 pause(2);

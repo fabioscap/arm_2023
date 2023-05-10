@@ -7,7 +7,7 @@ while num_objects>0 && n_try<3
     if num_objects<=0
         break
     end
-    pcYellow= geYellowCloud(false);
+    pcYellow= getYellowCloud(false);
     minIdxs = [];
     [labels, num] = pcsegdist(pointCloud(pcYellow),0.02);
     
@@ -33,7 +33,8 @@ while num_objects>0 && n_try<3
         plot3(ctr(1),ctr(2),ctr(3),'x','Color','white');
         quiver3(ctr(1),ctr(2),ctr(3),dir(1),dir(2),dir(3),'Color','white');
         % marco
-        pickObject(type,[ctr,dir]);
+        [z_dir, approach_orientation] = findBestOrientation(type,[ctr,dir],pc,pcYellow);
+        pickObject(type,[ctr,dir],z_dir,approach_orientation);
         throwAway(type);
     end
     n_try = n_try+1;

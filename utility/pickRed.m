@@ -30,7 +30,7 @@ while num_objects>unreachable && n_try<3
         if type=="can"
             offset = [0.015;0;0.05];
         else
-            offset = [0.015;0;0];
+            offset = [0.015;0;0.05];
         end
         too_close = false;
         if ctr(1)>0.9
@@ -45,7 +45,8 @@ while num_objects>unreachable && n_try<3
                 unreachable = unreachable+1;
             end
         else
-            pickObject(type,[ctr+offset,dir],[-pi,pi/8,0]);
+            [z_dir, approach_orientation] = findBestOrientation(type,[ctr,dir],pc,pcRed);
+            pickObject(type,[ctr+offset,dir],z_dir,[-pi,pi/8,0]);
             throwAway(type);
         end
     end

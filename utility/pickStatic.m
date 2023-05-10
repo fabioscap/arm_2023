@@ -38,7 +38,7 @@ moveTo(home,0);
 pickObject('can',can2);
 throwAway('can');
 moveTo(home,0);
-pickObject('can',can3,[-pi,0,pi/2]);
+pickObject('can',can3,0,[-pi,0,pi/2]);
 throwAway('can');
 moveTo(home,0);
 pickObject('can',can4);
@@ -49,7 +49,7 @@ throwAway('bottle');
 moveTo(home,0);
 %This is needed to avoid one of the boxes
 moveTo([0.0,0.6,0.3,-pi,0,0],0);
-pickObject('bottle',bottle2,[-pi-pi/9,0,0],true);
+pickObject('bottle',bottle2,0,[-pi-pi/9,0,0]);
 throwAway('bottle');
 moveTo(home,0);
 %This is needed to avoid one of the boxes

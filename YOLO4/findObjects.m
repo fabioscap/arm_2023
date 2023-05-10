@@ -13,7 +13,7 @@ for i=1:size(labels)
     for j=i+1:size(labels)
         if remove_idx(j)~=0 && remove_idx(i)~=0
             overlapRatio = bboxOverlapRatio(bboxes(i,:),bboxes(j,:),"Min");
-            if overlapRatio > 0.4
+            if overlapRatio > 0.1
                 if scores(i)>scores(j)
                     remove_idx(j) = 0;
                 else

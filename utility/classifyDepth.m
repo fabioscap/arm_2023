@@ -1,4 +1,4 @@
-function [type, obj, tf, ctr, dir] = classifyDepth(pc)
+function [type, obj, tf, ctr, dir, rmse] = classifyDepth(pc)
 global can_fit bottle_fit bottle_flipped
 % 0 is bottle
 % 1 is can
