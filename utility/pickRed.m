@@ -11,25 +11,41 @@ while num_objects>unreachable && n_try<3
     pcRed = getRedCloud(true);
     minIdxs = [];
     [labels, num] = pcsegdist(pointCloud(pcRed),0.02);
+    valid_labels = [];
+    for j=1:num
+        l = labels(labels==j);
+        n_points = length(l);
+        if n_points > 100
+            valid_labels = [valid_labels, j];
+        end
+    end
+    message = ['Pointcloud was segmented in ',num2str(num),' parts.'];
+    disp(message);
+    message = [num2str(length(valid_labels)),' parts have more than 100 points.'];
+    disp(message);
+    
     figure;
     pcshow(pcRed);
     hold on;
     scatter3(centers(:,1),centers(:,2),centers(:,3),5,"white");
     
-    for i=1:num_objects
+    for i=1:num
         moveTo(home+[0.3,0,-0.2,0,0,0],1);
-        [pc, minIdx] = findClosestPC(centers(i,:),pcRed,labels, minIdxs);
+        if i>num_objects
+            break;
+        end
+        v_l = valid_labels(i);
+        [pc, minIdx] = findClosestPC(centers(v_l,:),pcRed,labels, minIdxs);
         minIdxs = [minIdxs, minIdx];
-        pcshow(pc,"red");
-        [type, obj, model_tf, ctr, dir]= classifyDepth(pc);
+        [type, obj, model_tf, ctr, dir, rmse]= classifyDepth(pc);
         dir = dir/5;
-        pcshow(obj,"r");
         plot3(ctr(1),ctr(2),ctr(3),'x','Color','white');
         quiver3(ctr(1),ctr(2),ctr(3),dir(1),dir(2),dir(3),'Color','white');
-        % marco
-        if type=="can"
+        if type == "bottle"
+            pcshow(pc,"b"); hold on;
             offset = [0.015;0;0.05];
-        else
+        elseif type == "can"
+            pcshow(pc,"r"); hold on;
             offset = [0.015;0;0.05];
         end
         too_close = false;

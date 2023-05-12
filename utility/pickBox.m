@@ -29,7 +29,6 @@ while num_objects>0 && n_try<3
             valid_labels = [valid_labels, j];
         end
     end
-
     message = ['Pointcloud was segmented in ',num2str(num),' parts.'];
     disp(message);
     message = [num2str(length(valid_labels)),' parts have more than 100 points.'];
@@ -42,11 +41,9 @@ while num_objects>0 && n_try<3
     figure
     pcshow(pcBox);
     hold on;
-    
-    colors = ["r", "g","b","magenta"];
+
     for i=1:num
         moveTo(photo_position,1);
-        %moveGripper(0.04,10);
         if i>num_objects
             break;
         end
@@ -67,7 +64,6 @@ while num_objects>0 && n_try<3
         plot3(ctr(1),ctr(2),ctr(3),'x','Color','white');
         quiver3(ctr(1),ctr(2),ctr(3),dir(1),dir(2),dir(3),'Color','white');
 
-        % marco
         [z_dir, approach_orientation] = findBestOrientation(type,[ctr,dir],pc,pcBox_all);
         pickObject(type,[ctr,dir],z_dir,approach_orientation);
         throwAway(type);
