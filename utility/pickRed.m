@@ -8,7 +8,7 @@ while num_objects>unreachable && n_try<3
     if num_objects<=unreachable
         break
     end
-    pcRed = getRedCloud(true);
+    pcRed = getRedCloud(false);
     minIdxs = [];
     [labels, num] = pcsegdist(pointCloud(pcRed),0.02);
     valid_labels = [];
@@ -25,7 +25,7 @@ while num_objects>unreachable && n_try<3
     disp(message);
     
     figure;
-    pcshow(pcRed);
+    pcshow(pcRed,'g');
     hold on;
     scatter3(centers(:,1),centers(:,2),centers(:,3),5,"white");
     
@@ -43,10 +43,10 @@ while num_objects>unreachable && n_try<3
         quiver3(ctr(1),ctr(2),ctr(3),dir(1),dir(2),dir(3),'Color','white');
         if type == "bottle"
             pcshow(pc,"b"); hold on;
-            offset = [0.015;0;0.05];
+            offset = [0.015;0;0.01];
         elseif type == "can"
             pcshow(pc,"r"); hold on;
-            offset = [0.015;0;0.05];
+            offset = [0.015;0;0.0];
         end
         too_close = false;
         if ctr(1)>0.9

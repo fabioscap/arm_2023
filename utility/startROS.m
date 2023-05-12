@@ -1,5 +1,5 @@
 % Use hostname -I
-rosIP = "192.168.1.121"; % Change IP address!!    % IP address of ROS enabled machine 
+rosIP = "192.168.1.221"; % Change IP address!!    % IP address of ROS enabled machine 
 
 rosshutdown; % shut down existing connection to ROS
 rosinit(rosIP,11311);

@@ -35,7 +35,7 @@ if argm==3
         pcClose = pc_world(in_points,:);
         pcCloseValid = pcClose;
         pcCloseValid(ismember(pcClose,pc_obj,'rows')) = NaN;
-        mn = [-10,-10,position(3)+offset-0.06];
+        mn = [-10,-10,position(3)+offset-0.05];
         mx = [10,10,10];
         pcCV = pointCloud(pcCloseValid);
         pcCloseValidZ = pcrestrict(pcCV.Location, mn, mx);
