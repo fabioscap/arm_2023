@@ -17,9 +17,6 @@ function [theta] = pouchOrient(pc)
     v4 = pc(ymin_idx,:);
     vs = [v1; v2; v3; v4];
 
-
-
-
     % diagonals
     d1 = v1 - v3;
     d2 = v2 - v4;

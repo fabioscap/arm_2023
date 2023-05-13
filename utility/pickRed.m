@@ -5,7 +5,9 @@ n_try = 0;
 while num_objects>unreachable && n_try<3
     moveTo([0.7,0.,0.4,-pi,0,0],5);
     [num_objects, centers, bboxes,scores, labels] = findObjects(net,[Rmn;Rmx],true);
+    pause(1);
     if num_objects<=unreachable
+        close all;
         break
     end
     pcRed = getRedCloud(false);
@@ -67,6 +69,7 @@ while num_objects>unreachable && n_try<3
         end
     end
     n_try = n_try+1;
+    close all;
 end
 moveTo(home,1);
 
