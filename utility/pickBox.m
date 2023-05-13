@@ -14,7 +14,9 @@ while num_objects>0 && n_try<3
     [num_objects, centers, bboxes,scores, labels] = findObjects(net,[Bmn;Bmx],true);
     message = ['Found ',num2str(num_objects),' objects using YOLO.'];
     disp(message);
+    pause(1);
     if num_objects<=0
+        close all;
         break
     end
     pcBox_all = getBoxCloud(false);
@@ -68,6 +70,7 @@ while num_objects>0 && n_try<3
         pickObject(type,[ctr,dir],z_dir,approach_orientation);
         throwAway(type);
     end
+    close all;
 end
 % 
 % for i=1:n_objects

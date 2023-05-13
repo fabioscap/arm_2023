@@ -20,13 +20,15 @@ ctrs_good = [    0.6217   -0.1294   -0.0816;
     0.6224    0.0419   -0.0811]; % a good initial guess (pouches only rotate)
 
 [labels, ctrs] = kmeans(cloud_pouches, n_pouches, "Start", ctrs_good);
-
+pcshow(cloud_pouches, "w"); hold on;
 colors = ["r","g","b","magenta","cyan","yellow"];
 z_approach = [0 0 0.1 0 0 0];
 
 for i=1:n_pouches
     moveTo(home+[0.1,0,-0.1,0,0,0],1);
+    pc
     pouch_i = cloud_pouches(labels==i,1:2);
+    pcshow(cloud_pouches(labels==i,:), colors(i)); hold on;
     center = mean(pouch_i);
     
     theta = pouchOrient(pouch_i);
@@ -58,6 +60,7 @@ for i=1:n_pouches
     % TODO try fitting a square to the point cloud
     % https://people.inf.ethz.ch/arbenz/MatlabKurs/node85.html
 end
+close all;
 moveTo(home,0);
 
 
