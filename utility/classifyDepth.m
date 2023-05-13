@@ -1,10 +1,20 @@
 function [type, obj, tf, ctr, dir, rmse] = classifyDepth(pc)
-global can_fit bottle_fit bottle_flipped
-% 0 is bottle
-% 1 is can
-% 2 is pouch
-    % stupid check to see how large is the biggest eigenvalue of the pc
-    % bottles are longer than cans so it has to be bigger
+%CLASSIFYDEPTH Takes a pointcloud of an objects and fits the models
+%of the bottle and the can to it to find the best match.
+%   Inputs:
+%       pc: pointcloud to classify
+%   Outputs:
+%       type: the type of the object with the best fit. Either "bottle" or "can"
+%       obj: the transformed model of the fitted object
+%       tf: the transform obtained from the fit
+%       ctr: a 3-dimensional vector of the found center of the object.
+%       dir: a 3-dimensional vector of the found orientation of the object
+%       rmse: the root mean square error of the fit, calculated over the
+%       points of the models, not of the pc
+    global can_fit bottle_fit bottle_flipped
+    % 0 is bottle
+    % 1 is can
+    % 2 is pouch
     [tf1, obj1, rmse1] = modelfit(pc,can_fit);
     [tf2, obj2, rmse2] = modelfit(pc,bottle_fit);
     [tf3, obj3, rmse3] = modelfit(pc,bottle_flipped);

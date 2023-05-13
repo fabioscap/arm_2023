@@ -1,6 +1,15 @@
 function pickObject(type, position, z_dir, approach_orientation)
-%PICKOBJECT Summary of this function goes here
-%   Detailed explanation goes here
+%PICKOBJECT Function to pick an object with the gripper
+%   Inputs:
+%       type: type of the pbject. Either "bottle" or "can"
+%       position: 6-dimensional vector with position and orientation of the
+%       object
+%       z_dir: the rotation around the z axis that the end-effector needs 
+%       to pick up the object
+%       approach_orientation: a 3-dimensional vector with XYZ angles that
+%       the end-effector needs to pick up the object
+%   Outputs:
+%
 arguments
         type = "bottle"
         position = [0,0,0];

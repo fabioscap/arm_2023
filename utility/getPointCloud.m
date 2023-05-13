@@ -1,6 +1,10 @@
 function ptCloudWorld = getPointCloud()
-%GETPOINTCLOUD Summary of this function goes here
-%   Detailed explanation goes here
+%GETPOINTCLOUD Takes the pointcloud from the depth sensor and transforrm it
+%to world coordinates
+%   Input:
+%
+%   Output:
+%       pcCloudWorld: pointcloud in world coordinates
     tftree = rostf; %finds TransformationTree directly from ros
     pointCloudSub = rossubscriber('/camera/depth/points');
     pause(1);

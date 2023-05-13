@@ -1,6 +1,10 @@
 function throwAway(target_bin)
-%THROWAWAY Summary of this function goes here
-%   Detailed explanation goes here
+%THROWAWAY Throw a grasped object in the corresponding bin
+%   Inputs:
+%       target_bin: the type of the objects to be thrown. Either "bottle"
+%       or "can"
+%   Outputs:
+%
 bottleBin = [-0.35,-0.45,0.3,-pi,0,0];
 canBin = [-0.35,0.45,0.3,-pi,0,0];
 if target_bin=="bottle"

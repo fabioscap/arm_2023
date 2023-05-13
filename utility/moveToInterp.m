@@ -1,4 +1,13 @@
 function [done,eePosition,eeQuaternion] = moveToInterp(position, n_steps)
+%MOVETO Move the end-effector to a target position with intermediate steps
+%   Inputs:
+%       position: 6-dimensional vector containing target position and orientation
+%       of the end-effector
+%       n_steps: how many intermediate steps to do
+%   Outputs:
+%       done: true if target position was reached
+%       eePosition: position reached by the end-effector
+%       eeQuaternion: orientation reached by the end-effector
     arguments
         position
         n_steps = 10;

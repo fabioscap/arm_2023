@@ -1,6 +1,17 @@
 function [num_objects, centers, bboxes,scores,labels] = findObjects(net, bounds, show)
-%FINDOBJECTS Summary of this function goes here
-%   Detailed explanation goes here
+%FINDOBJECTS Using a network for object detection finds the objects in an image and their coordinates
+%in the world. Only looks for objects labelled as "bottle" or "can".
+%   Inputs:
+%       net: the network used for object detection
+%       bounds: the bounds, in world coordinates, in which to find the 
+%       objects
+%       show: whether to show the picture with the found bounding boxes
+%   Outputs:
+%       num_objects: the number of valid objects found
+%       centers: the centers of the found objects in world coordinates
+%       bboxes: the found bounding boxes
+%       scores: the network scores for the found objects
+%       labels: the types of objects found. Either "bottel" or "can"
 I = takePicture("None","rgb");
 Id = takePicture("None","depth");
 [bboxes,scores,labels] = detect(net,I);

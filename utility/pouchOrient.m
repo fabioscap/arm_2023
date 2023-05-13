@@ -1,4 +1,9 @@
 function [theta] = pouchOrient(pc)
+%PICKOBJECT Finds the z-angle of a pounch from its pointcloud
+%   Inputs:
+%       pc: pointcloud of the pouch
+%   Outputs:
+%       theta: rotation of the pounch around the z-axis
     % try to find the vertexes
     [~, xmax_idx] = max(pc(:,1));
     [~, ymax_idx] = max(pc(:,2));

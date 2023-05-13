@@ -1,4 +1,10 @@
 function [K,P] = getCameraMatrix
+%GETCAMERAMATRIX Returns the parameters of the camera
+%   Inputs:
+%        
+%   Outputs:
+%       K: K matrix
+%       P: P matrix
     persistent K_ P_
     if isempty(K_)
         sub = rossubscriber("/camera/rgb/camera_info");

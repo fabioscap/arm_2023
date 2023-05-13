@@ -1,5 +1,9 @@
 function [pcFiltered] = filterBox(pc)
-    % remove the box from the point cloud
+%FILTERBOX Removes the points in the pointcloud not inside the box.
+%   Inputs:
+%       pc: pointcloud
+%   Outputs:
+%       pcFiltered: the resulting pointcloud
 
     % vertexes of the box
     vrt_x = [ 0.17,  0.685,  0.755,  0.26];

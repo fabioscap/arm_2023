@@ -1,3 +1,4 @@
+% initialization of useful variables
 global can_fit bottle_fit bottle_flipped Ymn Ymx Rmn Rmx net jointPub
 
 home = [0.4,0,0.4,-pi,0,0];

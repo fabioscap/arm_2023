@@ -1,4 +1,12 @@
 function p_link0 = unproject(points, depth_image)
+%UNPROJECT Finds the world coordinates of points in an image using the
+%depth of the image.
+%   Inputs:
+%       points: a n x 2 vector of points, in image coordinates
+%       depth_image: the depth_image
+%   Outputs:
+%       p_link0: a n x 3 vector of points in world coordinates
+%       corresponding to the points selected in the depth_image
     p_link0 = [];
     point_size = size(points);
     for i=1:point_size(1)

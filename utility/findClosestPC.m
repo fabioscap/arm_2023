@@ -1,6 +1,15 @@
 function [pcClosest,minIdx] = findClosestPC(center,pcRegion, labels, oldIdxs)
-%FINDCLOSESTPC Summary of this function goes here
-%   Detailed explanation goes here
+%FINDCLOSESTPC From a segmented pointcloud finds the group of points
+%closest to the selected center
+%   Inputs:
+%       center: a 3-dimensional vector of the center
+%       pcRegion: pointcloud containing all the segmented objects
+%       labels: the labels corresponding to the different objects in the
+%       pointcloud
+%       oldIdx: the labels that need to be skipped
+%   Outputs:
+%       pcClosest: the pointcloud of the closest object to the center
+%       minIdx: the corresponding label
     minDist = inf;
     minIdx = 0;
     n_groups = max(labels);

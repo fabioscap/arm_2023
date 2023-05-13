@@ -1,10 +1,15 @@
 function img = takePicture(folder, type)
+%TAKEPICTURE Takes a picture using the camera on the robot
+%   Inputs:
+%       folder: where to save the picture. If "None" it does not save the
+%       picture
+%       type: type of picture. Either "rgb" or "depth"
+%   Outputs:
+%       img: the picture
     arguments
         folder
         type="rgb"
     end
-%TAKEPICTURE Summary of this function goes here
-%   Detailed explanation goes here
     if type=="rgb"
         ImgSub = rossubscriber("/camera/rgb/image_raw","sensor_msgs/Image","DataFormat","struct");
     elseif type=="depth"

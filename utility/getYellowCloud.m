@@ -1,6 +1,9 @@
 function pcY= getYellowCloud(show)
-%GE Summary of this function goes here
-%   Detailed explanation goes here
+%GETYELLOWCLOUD Return the pointcloud of the yellow region
+%   Inputs:
+%       show: whether to plot the pointcloud
+%   Outputs:
+%       pcB: pointcloud of the yellow region
 global Ymn Ymx;
 position1 = [0.2,0.2,0.4,-pi,0,0];
 position2 = [0.2,-0.2,0.4,-pi,0,0];

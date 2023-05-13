@@ -1,6 +1,10 @@
 function moveGripper(position,effort)
-%MOVEGRIPPER Summary of this function goes here
-%   Detailed explanation goes here
+%MOVEGRIPPER Controls the movement of the gripper
+%   Inputs:
+%       position: target position for the gripper. Between 0.04 and 0.
+%       effort: target effort of the gripper
+%   Outputs:
+%
 
 persistent gripAct gripGoal gripperCommand
 

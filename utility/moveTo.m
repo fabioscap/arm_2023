@@ -1,6 +1,18 @@
 function [done,eePosition,eeQuaternion] = moveTo(position,min_delay,noStop,fix,max_steps)
-%MOVETO Summary of this function goes here
-%   Detailed explanation goes here
+%MOVETO Move the end-effector to a taregt position
+%   Inputs:
+%       position: 6-dimensional vector containing target position and orientation
+%       of the end-effector
+%       min_delay: if the robot does not reach the target how long to wait
+%       before exiting
+%       noStop: if true the function ends after min_delay seconds
+%       fix: if true the robot, after stopping, updates the goal with the
+%       difference between the target position and the reached position
+%       max_steps: how many fixing steps to perform if fix is true
+%   Outputs:
+%       done: true if target position was reached
+%       eePosition: position reached by the end-effector
+%       eeQuaternion: orientation reached by the end-effector
     arguments
         position = [0.4,0,0.4,-pi,0,0];
         min_delay = 10;

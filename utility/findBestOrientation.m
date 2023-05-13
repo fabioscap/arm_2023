@@ -1,8 +1,22 @@
 function [z_dir, approach_orientation] = findBestOrientation(type, position, pc_obj, pc_world)
-%FINDBESTORIENTATION Summary of this function goes here
-%   Detailed explanation goes here
+%FINDBESTORIENTATION Finds best grasping orientation and approach direction 
+% in order to avoid collisions with other objects.
+%   Inputs:
+%       type: type of the object to grasp
+%       position: position of the object to grasp
+%       pc_obj: the pointcloud of the object to grasp
+%       pc_world: the pointcloud of the region around the object
+%   Outputs:
+%       z_dir: the calculated angle in radians around the z-axis that can 
+%       be used to grasp the object.
+%       approach_orientation: a 3-dimensional vector of the orientation the
+%       gripper should have when grasping the object. If different from
+%       [-pi,0,0] z_dir should be set to 0.
 
 [m,argm] = max(abs(position(4:6)));
+% to z_dir we add pi/2 because x-y axis are inverted from what one would
+% expect. At the end we remove pi/2 to return the correct z_dir that the
+% robot can use
 if type=="can"
     if argm~=3
         offset = 0.016;

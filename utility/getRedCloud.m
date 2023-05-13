@@ -1,6 +1,9 @@
 function pcR = getRedCloud(show)
-%GE Summary of this function goes here
-%   Detailed explanation goes here
+%GETREDCLOUD Return the pointcloud of the red region
+%   Inputs:
+%       show: whether to plot the pointcloud
+%   Outputs:
+%       pcB: pointcloud of the red region
 global Rmn Rmx;
 position1 = [0.5,-0.3,0.4,-pi+pi/6,0,0];
 position2 = [0.7,-0.3,0.4,-pi+pi/6,0,0];
