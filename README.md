@@ -7,7 +7,7 @@ This repository contains scripts and models necessary to reproduce our results f
 
 Before proceeding, ensure that you have the following dependencies installed:
 
-- MATLAB
+- MATLAB R2023a
 - Aerospace Toolbox
 - Computer Vision Toolbox
 - Deep Learning Toolbox
