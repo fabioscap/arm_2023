@@ -28,7 +28,7 @@ git clone https://github.com/fabioscap/arm_2023
 
 2. **Set Up the Simulated Environment**
 
-After cloning the repository, run the simulated environment. Ensure that the environment is set up correctly and all the necessary components are properly initialized.
+After cloning the repository, run the [simulated environment](https://arm.robocup.org/). Ensure that the environment is set up correctly and all the necessary components are properly initialized. 
 
 3. **Connect to the Environment**
 
