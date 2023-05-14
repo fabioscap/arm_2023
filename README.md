@@ -46,3 +46,9 @@ Finally, execute the `main.m` file to solve the challenge.
 ## Contact
 
 If you have any questions, please feel free to contact us.
+
+- Dennis Rotondi <rotondi.1834864@studenti.uniroma1.it>
+- Emanuele Giacomini <giacomini@diag.uniroma1.it>
+- Fabio Scaparro <scaparro.1834913@studenti.uniroma1.it>
+- Leonardo Brizi <brizi@diag.uniroma1.it>
+- Marco Montagna <montagna.1882418@studenti.uniroma1.it>
