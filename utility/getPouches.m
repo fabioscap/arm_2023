@@ -1,14 +1,13 @@
 position = [0.6,0,0.4,-pi,0,0];
 
-if ~exist("cloud_pouches","var")
-    moveTo(position);
-    pause(3);
-    cloud = getPointCloud;
-    
-    mn = [0.48,-0.2,-0.082];
-    mx = [0.65,0.16,10-0.615];
-    cloud_pouches = pcrestrict(cloud.Location, mn, mx);
-end
+moveTo(position);
+pause(1);
+cloud = getPointCloud;
+
+mn = [0.48,-0.2,-0.082];
+mx = [0.65,0.16,10-0.615];
+cloud_pouches = pcrestrict(cloud.Location, mn, mx);
+
 
 n_pouches = 6; % the number of pouches ( the easy ones )
 
@@ -26,7 +25,6 @@ z_approach = [0 0 0.1 0 0 0];
 
 for i=1:n_pouches
     moveTo(home+[0.1,0,-0.1,0,0,0],1);
-    pc
     pouch_i = cloud_pouches(labels==i,1:2);
     pcshow(cloud_pouches(labels==i,:), colors(i)); hold on;
     center = mean(pouch_i);

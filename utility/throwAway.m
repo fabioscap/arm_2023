@@ -29,7 +29,8 @@ else
     moveTo(target,0);
 end
 
-%pause(1);
+pause(1);
+moveGripper(0.04,50);
 moveGripper(0.04,50);
 pause(1);
 end

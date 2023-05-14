@@ -3,7 +3,7 @@ num_objects = 4;
 n_try = 0;
 while num_objects>0 && n_try<3
     moveTo([0.2,0,0.4,-pi,0,0],5);
-    [num_objects, centers, bboxes,scores, labels] = findObjects(net,[Ymn;Ymx],true);
+    [num_objects, centers, bboxes,scores, labelsy] = findObjects(net,[Ymn;Ymx],true);
     pause(1);
     if num_objects<=0
         close all;
@@ -39,6 +39,10 @@ while num_objects>0 && n_try<3
         minIdxs = [minIdxs, minIdx];
         [type, obj, model_tf, ctr, dir, rmse]= classifyDepth(pc);
         dir = dir/5;
+        if type ~= labelsy(i) && scores(i) >= 0.9
+            type = labelsy(i);
+            disp("point cloud was missclassified")
+        end
         if type == "bottle"
             pcshow(pc,"b"); hold on;
         elseif type == "can"

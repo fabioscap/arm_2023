@@ -19,12 +19,12 @@ end
 [m,argm] = max(abs(position(4:6)));
 if type=="can"
     if argm~=3
-        targetWidth = 0.035;
-        force = 20;
+        targetWidth = 0.032;
+        force = 30;
         offset = 0.01+0.105;
     else
-        targetWidth = 0.035;
-        force = 20;
+        targetWidth = 0.032;
+        force = 30;
         offset = 0.1;
     end
 else
