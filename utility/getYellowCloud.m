@@ -29,7 +29,7 @@ end
 %pcMergedTop = select(pcMerged,indx);
 %pcshow(pcMerged);
 % save the full point_cloud just in case
-save("ptClouds.mat","ptClouds");
+% save("ptClouds.mat","ptClouds");
 % the bounds of the yellow region
 pcY = pcrestrict(pcMerged.Location, Ymn, Ymx);
 

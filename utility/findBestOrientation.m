@@ -80,11 +80,12 @@ else
     pcClose = pc_world(in_points,:);
     pcCloseValid = pcClose;
     pcCloseValid(ismember(pcClose,pc_obj,'rows')) = NaN;
+    approach_orientation = [-pi,0,0];
     if length(pcCloseValid)>10
         % CONTINUE ADDING MAYBE AVERAGE OF THE POINTS AND THEN CALCULATE
-        % BEST approach_orientation
+        % BEST approach_orientation, then set z_dir to 0
     end
-    approach_orientation = [-pi,0,0];
+    
 end
 
 z_dir = z_dir - pi/2;

@@ -30,7 +30,7 @@ end
 %pcMergedTop = select(pcMerged,indx);
 % pcshow(pcMerged);
 % save the full point_cloud just in case
-save("ptClouds2.mat","ptClouds");
+% save("ptClouds2.mat","ptClouds");
 % the bounds of the Red region
 
 pcR = pcrestrict(pcMerged.Location, Rmn, Rmx);
