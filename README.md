@@ -28,7 +28,7 @@ git clone https://github.com/fabioscap/arm_2023
 
 2. **Set Up the Simulated Environment**
 
-After cloning the repository, run the [simulated environment](https://arm.robocup.org/). Ensure that the environment is set up correctly and all the necessary components are properly initialized. In our examinations, we've consistently utilized the Nvidia mode (command: ./run_bash Nvidia), thus maintaining a "real time factor" of 0.9 or higher.
+After cloning the repository, run the [simulated environment](https://arm.robocup.org/). Ensure that the environment is set up correctly and all the necessary components are properly initialized. In our examinations, we've consistently utilized the Nvidia mode (command: ``./run_bash Nvidia``), thus maintaining a "real time factor" of 0.9 or higher.
 
 3. **Connect to the Environment**
 
