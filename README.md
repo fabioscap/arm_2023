@@ -40,7 +40,8 @@ Finally, execute the `main.m` file to solve the challenge.
 
 ## Useful links
 
-- [YOLO Dataset](https://drive.google.com/drive/folders/1Z_fQhqY4dw6TJh4KXvdRaZEcKD5mIhhS?usp=sharing)
+- [YOLO Dataset](https://drive.google.com/drive/folders/1Z_fQhqY4dw6TJh4KXvdRaZEcKD5mIhhS?usp=sharing) (The link provided is private. If you wish to view it, kindly request access.)
+
 - [Video of our program in action](https://drive.google.com/file/d/1aAxM02qK1T6J0tL3uSaWgUbBY04pCLik/view?usp=sharing)
 
 ## Contact
