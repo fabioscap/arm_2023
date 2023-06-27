@@ -1,4 +1,4 @@
-data = load("dataset.mat");
+data = load("dataset_real.mat");
 trainingDataTable = objectDetectorTrainingData(data.gTruth);
 
 rng("default");
@@ -61,8 +61,8 @@ anchorBoxes = {anchors(1:5,:)
     };
 
 % YOLO
-detector = yolov4ObjectDetector("tiny-yolov4-coco",classNames,anchorBoxes,InputSize=inputSize);
-
+% detector = yolov4ObjectDetector("tiny-yolov4-coco",classNames,anchorBoxes,InputSize=inputSize);
+detector = load("detector_nuova").detector;
 % Training options
 options = trainingOptions("adam",...
     GradientDecayFactor=0.9,...
@@ -104,8 +104,8 @@ doTraining = true;
 if doTraining       
     % Train the YOLO v4 detector.
     [detector,info] = trainYOLOv4ObjectDetector(trainingData,detector,options);
-    save("detector.mat","detector");
+    save("detector_nuova.mat","detector");
 else
     % Load pretrained detector for the example.
-    detector = load("detector.mat");
+    detector = load("detector_nuova.mat");
 end
