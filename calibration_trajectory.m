@@ -1,5 +1,5 @@
 % To run the program the correct IP address needs to the set.
-rosIP = "10.10.231.171"; % IP address of ROS enabled machine 
+rosIP = "192.168.0.43"; % IP address of ROS enabled machine 
 
 % add all folders in the project to the path
 addpath(genpath(pwd));
@@ -17,15 +17,22 @@ orientations = [-pi, 0, 0];
 z_car = -0.02:0.04/15:0.02;
 z_car = cat(2,z_car,(-0.02:0.04/15:0.02)*-1);
 z_car = repmat(z_car, [1,10]);
-z_rot = -pi/2:pi/10:pi/2;
-z_rot = cat(2,z_rot,(-pi/2:pi/10:pi/2)*-1);
-z_rot = repmat(z_rot, [1,10]);
-x_rot = -pi/12:pi/36:pi/12;
-x_rot = cat(2,x_rot,(-pi/12:pi/36:pi/12)*-1);
-x_rot = repmat(x_rot, [1,10]);
-y_rot = -pi/12:pi/39:pi/12;
-y_rot = cat(2,y_rot,(-pi/12:pi/39:pi/12)*-1);
-y_rot = repmat(y_rot, [1,10]);
+
+z_rot = 0:pi/(2*15):pi/2;
+z_rot2 = pi/2-z_rot;
+z_rot = cat(2,z_rot,z_rot2);
+z_rot = cat(2,z_rot,-z_rot);
+
+x_rot = 0:pi/(12*15):pi/12;
+x_rot2 = pi/12-x_rot;
+x_rot = cat(2,x_rot,x_rot2);
+x_rot = cat(2,-x_rot,x_rot);
+
+y_rot = 0:pi/(12*15):pi/12;
+y_rot2 = pi/12-y_rot;
+y_rot = cat(2,y_rot,y_rot2);
+y_rot = cat(2,y_rot,-y_rot);
+
 for i=1:128
     moveTo(cat(2,v(:,i)'+[0,0,z_car(i)],orientations(1,:)+[x_rot(i),y_rot(i),z_rot(i)]),0.0,true);
 end
