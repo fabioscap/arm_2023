@@ -15,9 +15,13 @@ function [type, obj, tf, ctr, dir, rmse] = classifyDepth(pc)
     % 0 is bottle
     % 1 is can
     % 2 is pouch
-    [tf1, obj1, rmse1] = modelfit(pc,can_fit);
-    [tf2, obj2, rmse2] = modelfit(pc,bottle_fit);
-    [tf3, obj3, rmse3] = modelfit(pc,bottle_flipped);
+    [tf1, obj1, rmse1] = modelfit2(pc,can_fit);
+    [tf2, obj2, rmse2] = modelfit2(pc,bottle_fit);
+    [tf3, obj3, rmse3] = modelfit2(pc,bottle_flipped);
+    rmse1 = getRMSE(pc, obj1);
+    rmse2 = getRMSE(pc, obj2);
+    rmse3 = getRMSE(pc, obj3);
+
     [m,class] = min([rmse1,rmse2,rmse3]);
     tfs = [tf1,tf2,tf3];
     objs = {obj1,obj2,obj3};
@@ -32,6 +36,9 @@ function [type, obj, tf, ctr, dir, rmse] = classifyDepth(pc)
     end
     center    = [0; 0;0];
     pcshow(obj,'r');
+    % pcshow(obj1,'r');
+    % pcshow(obj2,'b');
+    % pcshow(obj3,'g');
 
     if class==1
         type = "can";

@@ -1,4 +1,4 @@
-function [tf, pctf, rmse] = modelfit(pc,pcmodel,initGuess, scale)
+function [tf, pctf, rmse] = modelfit2(pc,pcmodel,initGuess, scale)
 %MODELFIT Finds the best transformation between two pointclouds
 %   Inputs:
 %       pc: fixed pointcloud
@@ -19,7 +19,7 @@ function [tf, pctf, rmse] = modelfit(pc,pcmodel,initGuess, scale)
     if class(initGuess) == "string"
         [tf, pctf, rmse] = pcregistericp(pcsc, ...
                                          pcdownsample(pointCloud(pc),"gridAverage",0.001),...
-                                         "Metric", "PlaneToPlane");
+                                         "Metric", "PlaneToPlane", "MaxIterations", 50, "InlierDistance", 1);
     else
         [tf, pctf, rmse] = pcregistericp(pcsc, ...
                                  pcdownsample(pointCloud(pc),"gridAverage",0.001),...
