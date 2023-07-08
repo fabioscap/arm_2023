@@ -15,9 +15,9 @@ function [type, obj, tf, ctr, dir, rmse] = classifyDepth(pc)
     % 0 is bottle
     % 1 is can
     % 2 is pouch
-    [tf1, obj1, rmse1] = modelfit2(pc,can_fit);
-    [tf2, obj2, rmse2] = modelfit2(pc,bottle_fit);
-    [tf3, obj3, rmse3] = modelfit2(pc,bottle_flipped);
+    [tf1, obj1, rmse1] = modelfit(pc,can_fit);
+    [tf2, obj2, rmse2] = modelfit(pc,bottle_fit);
+    [tf3, obj3, rmse3] = modelfit(pc,bottle_flipped);
     rmse1 = getRMSE(pc, obj1);
     rmse2 = getRMSE(pc, obj2);
     rmse3 = getRMSE(pc, obj3);
