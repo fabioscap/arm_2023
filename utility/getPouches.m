@@ -4,10 +4,13 @@ moveTo(position);
 pause(1);
 cloud = getPointCloud;
 
-mn = [0.48,-0.2,-0.082];
-mx = [0.65,0.16,10-0.615];
-cloud_pouches = pcrestrict(cloud.Location, mn, mx);
-
+mn1 = [0.48,-0.2,-0.082];
+mx1 = [0.65,0.1,10-0.615];
+mn2 = [0.48,0.1,-0.082];
+mx2 = [0.60,0.16,10-0.615];
+cloud_pouches1 = pcrestrict(cloud.Location, mn1, mx1);
+cloud_pouches2 = pcrestrict(cloud.Location, mn2, mx2);
+cloud_pouches = [cloud_pouches1; cloud_pouches2];
 
 n_pouches = 6; % the number of pouches ( the easy ones )
 
