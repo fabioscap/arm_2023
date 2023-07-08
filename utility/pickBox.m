@@ -11,6 +11,14 @@ photo_position = [0.43,-0.45,0.35,-pi,0,2*pi/5];
 n_try = 0;
 while num_objects>0 && n_try<3
     moveTo(photo_position);
+    tftree_photo = rostf;
+    pause(1);
+    while isempty(tftree_photo.AvailableFrames)
+        disp("Waiting for tftree");
+        tftree_photo = rostf;
+        pause(1);
+    end
+    transf_photo = getTransform(tftree_photo, 'panda_link0', 'panda_EE','Timeout',3); 
     [num_objects, centers, bboxes,scores, labels] = findObjects(net,[Bmn;Bmx],true);
     message = ['Found ',num2str(num_objects),' objects using YOLO.'];
     disp(message);
@@ -31,7 +39,8 @@ while num_objects>0 && n_try<3
             valid_labels = [valid_labels, j];
         end
     end
-    message = ['Pointcloud was segmented in ',num2str(num),' parts.'];
+    [labels, valid_labels] = fixSegmentation(pcBox, labels, valid_labels, num, bboxes, tftree_photo);
+    message = ['Pointcloud was segmented in ',num2str(length(valid_labels)),' parts.'];
     disp(message);
     message = [num2str(length(valid_labels)),' parts have more than 100 points.'];
     disp(message);
