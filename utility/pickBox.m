@@ -18,7 +18,7 @@ while num_objects>0 && n_try<3
         tftree_photo = rostf;
         pause(1);
     end
-    transf_photo = getTransform(tftree_photo, 'panda_link0', 'panda_EE','Timeout',3); 
+    transf_photo = getTransform(tftree_photo, 'camera_depth_link', 'panda_link0','Timeout',3); 
     [num_objects, centers, bboxes,scores, labels] = findObjects(net,[Bmn;Bmx],true);
     message = ['Found ',num2str(num_objects),' objects using YOLO.'];
     disp(message);
@@ -39,7 +39,7 @@ while num_objects>0 && n_try<3
             valid_labels = [valid_labels, j];
         end
     end
-    [labels, valid_labels] = fixSegmentation(pcBox, labels, valid_labels, num, bboxes, tftree_photo);
+    [labels, valid_labels] = fixSegmentation(pcBox, labels, valid_labels, num, bboxes, transf_photo);
     message = ['Pointcloud was segmented in ',num2str(length(valid_labels)),' parts.'];
     disp(message);
     message = [num2str(length(valid_labels)),' parts have more than 100 points.'];
@@ -59,7 +59,7 @@ while num_objects>0 && n_try<3
             break;
         end
         v_l = valid_labels(i);
-        [pc, minIdx] = findClosestPC(centers(v_l,:),pcBox,labels, minIdxs);
+        [pc, minIdx] = findClosestPC(centers(i,:),pcBox,labels, minIdxs);
         minIdxs = [minIdxs, minIdx];
         [type, obj, model_tf, ctr, dir, rmse]= classifyDepth(pc);
         message = ['Object ',convertStringsToChars(type),' -> rmse: ',num2str(rmse)];
