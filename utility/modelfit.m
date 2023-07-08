@@ -1,4 +1,4 @@
-function [tf, pctf, rmse] = modelfit2(pc,pcmodel,initGuess, scale)
+function [tf, pctf, rmse] = modelfit(pc,pcmodel,initGuess, scale)
 %MODELFIT Finds the best transformation between two pointclouds
 %   Inputs:
 %       pc: fixed pointcloud
