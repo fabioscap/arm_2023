@@ -37,10 +37,14 @@ function [done,eePosition,eeQuaternion] = moveTo(position,min_delay,noStop,fix,m
     jointMess.Pose.Orientation.Y = quat(3);
     jointMess.Pose.Orientation.Z = quat(4);
     send(jointPub,jointMess);
-
     tftree = rostf;
     pause(1);
-    transf = getTransform(tftree, 'panda_link0', 'panda_EE','Timeout',inf); 
+    while isempty(tftree.AvailableFrames)
+        disp("Waiting for tftree");
+        tftree = rostf;
+        pause(1);
+    end
+    transf = getTransform(tftree, 'panda_link0', 'panda_EE','Timeout',3); 
     transl = transf.Transform.Translation;
     rotation = transf.Transform.Rotation;
     eePosition = [transl.X,transl.Y,transl.Z];

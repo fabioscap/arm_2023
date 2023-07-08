@@ -50,6 +50,9 @@ function [type, obj, tf, ctr, dir, rmse] = classifyDepth(pc)
     
     % TRANSFORM THE CENTER AND THE DIRECTIONS
     dir = tf.R*direction;
+    if dir(1)<-0.9
+        dir(1) = -dir(1);
+    end
     ctr = tf.transformPointsForward(center')';
 end
 
