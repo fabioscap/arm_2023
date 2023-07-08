@@ -28,7 +28,7 @@ if type=="can"
 else
     if argm~=3
         offset = 0.016;
-        z_dir = atan2(position(5),position(4))+pi/2;
+        z_dir = atan2(-position(5),position(4))+pi/2;
     else
         offset = 0.05;
         z_dir = +pi/2;

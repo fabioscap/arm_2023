@@ -38,6 +38,7 @@ function [done,eePosition,eeQuaternion] = moveTo(position,min_delay,noStop,fix,m
     jointMess.Pose.Orientation.Z = quat(4);
     send(jointPub,jointMess);
     tftree = rostf;
+    pause(1);
     while isempty(tftree.AvailableFrames)
         disp("Waiting for tftree");
         tftree = rostf;
