@@ -1,4 +1,4 @@
-function img = project(points)
+function [mask, idxes] = project(points, camera_transf)
 %PROJECT return a binary mask of a point cloud as seen from camera
 %position
 
@@ -7,8 +7,6 @@ rows = 480;
 cols = 640;
 
 [K,~] = getCameraMatrix;
-
-camera_transf = getTransform(rostf,"camera_depth_link", "panda_link0","Timeout",inf);
 
 camera_transl = camera_transf.Transform.Translation;
 camera_rotation = camera_transf.Transform.Rotation;
@@ -20,7 +18,9 @@ rotm = quat2rotm(camera_quaternion);
 tform = rigidtform3d(rotm,camera_translation);
 points3 = tform.transformPointsForward(points);
 
-img = false(rows, cols);
+mask = false(rows, cols);
+idxes = zeros(rows, cols);
+
 
 fx = K(1,1);
 fy = K(2,2);
@@ -41,6 +41,6 @@ for i=1:size(points3,1)
         continue;
     end
 
-    img(v,u) = true;
-
+    mask(v,u) = true;
+    idxes(v,u) = i;
 end
