@@ -21,7 +21,6 @@ points3 = tform.transformPointsForward(points);
 mask = false(rows, cols);
 idxes = zeros(rows, cols);
 
-
 fx = K(1,1);
 fy = K(2,2);
 cx = K(1,3);
@@ -43,4 +42,6 @@ for i=1:size(points3,1)
 
     mask(v,u) = true;
     idxes(v,u) = i;
+end
+
 end
